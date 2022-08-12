@@ -75,7 +75,7 @@ with mp_face_mesh.FaceMesh(
     if not success:
       print("Ignoring empty camera frame.")
       # If loading a video, use 'break' instead of 'continue'.
-      continue
+      break
 
     # To improve performance, optionally mark the image as not writeable to
     # pass by reference.
@@ -144,6 +144,9 @@ with mp_face_mesh.FaceMesh(
             .get_default_face_mesh_iris_connections_style())
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Face Mesh', cv2.flip(image, 1) if args.flip else image)
-    if cv2.waitKey(5) & 0xFF == 27:
-      break
+    #if cv2.waitKey(5) & 0xFF == 27:
+      #break
+    # 'q'が入力されるまでループ
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 cap.release()
